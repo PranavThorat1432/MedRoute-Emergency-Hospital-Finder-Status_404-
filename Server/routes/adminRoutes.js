@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const auth = require('../middleware/auth');
-const { upload } = require('../config/cloudinary');
+const { upload } = require('../config/cloudinary.js');
 const {
   login,
   getAllHospitals,
@@ -9,7 +9,7 @@ const {
   updateHospital,
   deleteHospital,
   updateAvailability,
-} = require('../controllers/adminController');
+} = require('../controller/adminController.js');
 
 router.post('/login', login);
 router.get('/hospitals', auth, getAllHospitals);
