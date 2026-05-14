@@ -13,13 +13,13 @@ const hospitalSchema = new mongoose.Schema(
     image: {
       type: String,
       default:
-        '',
+        'https://res.cloudinary.com/demo/image/upload/v1/public/default_hospital.jpg',
     },
     imagePublicId: { type: String, default: '' },
     emergency: { type: Boolean, default: false },
     specialities: [{ type: String }],
     beds: {
-      total: { type: Number, default: 0 },
+      total: { type: Number, default: 0 },    
       available: { type: Number, default: 0 },
     },
     icu: {
