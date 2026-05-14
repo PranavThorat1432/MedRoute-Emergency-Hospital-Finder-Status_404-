@@ -4,7 +4,7 @@ const {
   getAllHospitals,
   getEmergencyHospitals,
   getHospitalById,
-} = require('../controllers/hospitalController');
+} = require('../controller/hospitalController.js');
 
 router.get('/', getAllHospitals);
 router.get('/emergency', getEmergencyHospitals);
