@@ -17,7 +17,8 @@ function HomeContent() {
   const [emergencyHospitals, setEmergencyHospitals] = useState([])
   const [loading, setLoading] = useState(false)
   const [locationLoading, setLocationLoading] = useState(false)
-  const [userLocation, setUserLocation] = useState(() => getLastKnownLocation() || null)
+  // Hardcoded to Godavari College of Engineering
+  const [userLocation, setUserLocation] = useState({ lat: 21.00399, lng: 75.59704 })
   const [locationError, setLocationError] = useState('')
   const [emergencyMode, setEmergencyMode] = useState(false)
   const [view, setView] = useState('list') // 'list' | 'map'
@@ -80,21 +81,15 @@ function HomeContent() {
   function handleGetLocation() {
     setLocationLoading(true)
     setLocationError('')
-    navigator.geolocation.getCurrentPosition(
-      (pos) => {
-        const loc = { lat: pos.coords.latitude, lng: pos.coords.longitude }
-        setUserLocation(loc)
-        saveLastKnownLocation(loc.lat, loc.lng)
-        fetchEmergency(loc.lat, loc.lng)
-        setLocationLoading(false)
-      },
-      () => {
-        setLocationError(t('locationDenied'))
-        setLocationLoading(false)
-        fetchEmergency()
-      },
-      { timeout: 8000 }
-    )
+    
+    // Hardcoded location simulation: Godavari College of Engineering, Jalgaon
+    setTimeout(() => {
+      const loc = { lat: 21.00399, lng: 75.59704 }
+      setUserLocation(loc)
+      saveLastKnownLocation(loc.lat, loc.lng)
+      fetchEmergency(loc.lat, loc.lng)
+      setLocationLoading(false)
+    }, 600)
   }
 
   function handleEmergency() {
