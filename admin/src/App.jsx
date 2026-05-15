@@ -7,7 +7,7 @@ function PrivateRoute({ children }) {
   return localStorage.getItem('adminToken') ? children : <Navigate to="/login" replace />
 }
 
-export const backendURL = process.env.VITE_SERVER_URL || 'http://localhost:5000'
+export const backendURL = import.meta.env.VITE_SERVER_URL || 'http://localhost:5000'
 
 
 export default function App() {
