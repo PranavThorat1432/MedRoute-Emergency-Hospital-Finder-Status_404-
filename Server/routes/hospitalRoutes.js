@@ -4,10 +4,13 @@ const {
   getAllHospitals,
   getEmergencyHospitals,
   getHospitalById,
-} = require('../controller/hospitalController.js');
+} = require('../controllers/hospitalController');
+const { createHold, confirmHold } = require('../controllers/holdController');
 
 router.get('/', getAllHospitals);
 router.get('/emergency', getEmergencyHospitals);
+router.post('/hold/:holdId/confirm', express.json(), confirmHold);
+router.post('/:id/hold', express.json(), createHold);
 router.get('/:id', getHospitalById);
 
 module.exports = router;
