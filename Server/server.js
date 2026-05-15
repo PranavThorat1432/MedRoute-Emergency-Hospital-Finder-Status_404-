@@ -24,6 +24,7 @@ const PORT = process.env.PORT || 5000;
 // Databse Connection
 connectDB();
 
+
 setInterval(() => {
   releaseExpiredHolds().catch((e) => console.warn('[holds] releaseExpiredHolds:', e.message));
 }, 20 * 1000);
