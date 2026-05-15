@@ -1,4 +1,5 @@
 import { useLang } from '../context/LangContext'
+import { adminURL } from '../App'
 
 export default function Navbar() {
   const { lang, setLang, t } = useLang()
@@ -21,8 +22,18 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* Language Toggle */}
-          <div className="flex items-center bg-slate-800/50 backdrop-blur-sm rounded-xl p-1 gap-1 border border-slate-700/50">
+          {/* Admin Link & Language Toggle */}
+          <div className="flex items-center gap-4">
+            <a 
+              href={adminURL} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-xs font-semibold text-cyan-400 hover:text-cyan-300 bg-slate-800/50 hover:bg-slate-700/50 border border-slate-700/50 px-3 py-1.5 rounded-lg transition-colors hidden sm:flex items-center gap-1.5"
+            >
+              <span>⚙️</span> Admin Portal
+            </a>
+            
+            <div className="flex items-center bg-slate-800/50 backdrop-blur-sm rounded-xl p-1 gap-1 border border-slate-700/50">
             {['en', 'hi', 'mr'].map((l) => (
               <button
                 key={l}
@@ -36,6 +47,7 @@ export default function Navbar() {
                 {l === 'en' ? 'EN' : l === 'hi' ? 'हिं' : 'मर'}
               </button>
             ))}
+          </div>
           </div>
         </div>
       </div>

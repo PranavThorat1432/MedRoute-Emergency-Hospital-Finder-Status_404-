@@ -2,7 +2,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
 import HospitalDetail from './pages/HospitalDetail'
 
-export const backendURL = process.env.VITE_SERVER_URL || 'http://localhost:5000'
+export const backendURL = import.meta.env.VITE_SERVER_URL || 'http://localhost:5000'
+export const adminURL = import.meta.env.VITE_ADMIN_URL || 'http://localhost:5174'
 
 export default function App() {
   return (
