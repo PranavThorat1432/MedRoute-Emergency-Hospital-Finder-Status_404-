@@ -32,6 +32,12 @@ const PORT = process.env.PORT || 5000;
 // Databse Connection
 connectDB();
 
+app.get('/', (req, res) => {    
+    res.json({
+        message: "Server is running",
+        success: true
+    }) 
+}); 
 
 setInterval(() => {
   releaseExpiredHolds().catch((e) => console.warn('[holds] releaseExpiredHolds:', e.message));
