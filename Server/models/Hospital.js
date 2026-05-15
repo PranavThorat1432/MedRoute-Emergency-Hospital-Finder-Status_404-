@@ -1,5 +1,15 @@
 const mongoose = require('mongoose');
 
+const BLOOD_GROUPS = ['O+', 'O-', 'A+', 'A-', 'B+', 'B-', 'AB+', 'AB-'];
+
+const bloodEntrySchema = new mongoose.Schema(
+  {
+    group: { type: String, enum: BLOOD_GROUPS, required: true },
+    units: { type: Number, default: 0, min: 0 },
+  },
+  { _id: false }
+);
+
 const hospitalSchema = new mongoose.Schema(
   {
     name: { type: String, required: true },
@@ -13,13 +23,13 @@ const hospitalSchema = new mongoose.Schema(
     image: {
       type: String,
       default:
-        'https://res.cloudinary.com/demo/image/upload/v1/public/default_hospital.jpg',
+        'https://res.cloudinary.com/demo/image/upload/v1/medroute/hospitals/default_hospital.jpg',
     },
     imagePublicId: { type: String, default: '' },
     emergency: { type: Boolean, default: false },
     specialities: [{ type: String }],
     beds: {
-      total: { type: Number, default: 0 },    
+      total: { type: Number, default: 0 },
       available: { type: Number, default: 0 },
     },
     icu: {
@@ -34,9 +44,12 @@ const hospitalSchema = new mongoose.Schema(
       total: { type: Number, default: 0 },
       available: { type: Number, default: 0 },
     },
+    bloodInventory: { type: [bloodEntrySchema], default: [] },
     isActive: { type: Boolean, default: true },
   },
   { timestamps: true }
 );
 
-module.exports = mongoose.model('Hospital', hospitalSchema);
+const Hospital = mongoose.model('Hospital', hospitalSchema);
+Hospital.BLOOD_GROUPS = BLOOD_GROUPS;
+module.exports = Hospital;
